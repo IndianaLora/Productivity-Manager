@@ -5,12 +5,46 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
-    <title>Stop Watch</title>
+    <title>Productivy Manager</title>
   </head>
   <body>
-    <div class="watch-container">
-      <h1 class="tittle">Pomodoro Timer</h1>
+    <div class="container" id="container">
+ <section>
+   <div class="timezone" id="timezone">
+   </div>
+ </section>
+        <h1 class="title-primary whitee">Productivy Manager</h1>                 
+        <!-- add todo -->
+        <section>
+          <label for="todo" class="input-label whitee">Add New</label>
+          <input type="text" name="todo" id="todo" placeholder="Type your activity...">
+        </section>     
+        <!-- Todos -->
+        <section>
+          <h2 class="title-secondary title-active whitee">To dos</h2>
+          <ul class="list list-active">
+            <li class="list-item">
+              <span class="left-side">
+                <button class="btn btn-check btn-check-active">
+                  <i class="fas fa-check fa-check-active"></i>
+                </button>
+                <span class="text">Walk the dog</span>
+                <textarea cols="25" rows="3" class="li-text-edit"></textarea>
+              </span>
+              <span class="right-side">
+                <button class="btn btn-edit">
+                  <i class="fas fa-pen"></i>
+                </button>
+                <button class="btn btn-remove">
+                  <i class="fas fa-times"></i>
+                </button>
+              </span> 
+            </li>
+          </ul>
+        </section>
+     <!-- Pomodoro timer -->
       <section>
+        <h1 class="tittle">Pomodoro Timer</h1>
         <div class="timer" id="timer"></div>
       </section>
       <section id="buttons">

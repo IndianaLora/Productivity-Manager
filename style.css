@@ -1,43 +1,187 @@
-.watch-container{
-    margin: 0 auto;
-    width:500px;
-    height: 200px;
-    border-radius: 2px;
-    background-color: rgb(91, 138, 91);
-    border-color: #000;
+.container {
+  margin: 0 auto;
+  width: 320px;
+  padding: 20px;
+  height: fit-content;
+  border-radius: 10px;
+  background-color: rgb(185, 121, 177);
+  border-color: #000;
+}
+.center {
+  margin-left: 46%;
+}
+.whitee{
+    color: white;
+    text-align: center;
+}
+.tittle {
+  color: white;
+  text-align: center;
 
 }
-.center{
-    margin-left:46%
+.timezone{
+  text-align: center;
+  color:rgb(255, 255, 255);
 }
-.tittle{
-    color: white;
-    margin-left:27%;
-    margin-bottom:20px;
-}
-.button-container{
-    padding: 20px ;
-    margin-left: 15%;
-    display: grid;
+.button-container {
+  padding: 20px;
+  margin-left: 10%;
+  display: grid;
   grid-template-columns: repeat(3, 1fr);
 }
-.button{
-    width:50px;
-    height: 50px;
-    color:white;
-    background-color: #000;
-    border-radius: 10%;
-    cursor: pointer;
+.button {
+  width: 50px;
+  height: 50px;
+  color: white;
+  background-color: #000;
+  border-radius: 10%;
+  text-align: center;
+  cursor: pointer;
 }
-.button:hover{
-    background-color: rgb(141, 140, 140);
+.button:hover {
+  background-color: rgb(141, 140, 140);
 }
-.disabled{
-    pointer-events: none;
-    width:50px;
-    height: 50px;
-    color: white;
-    background-color: rgb(128, 126, 126);
-    border-radius: 10%;
-    cursor: pointer;
+.disabled {
+  pointer-events: none;
+  width: 50px;
+  height: 50px;
+  color: white;
+  background-color: rgb(128, 126, 126);
+  border-radius: 10%;
+  cursor: pointer;
+}
+section {
+  position: relative;
+  width: 300px;
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: #d8b1d3;
+}
+
+.title-primary {
+  font-size: 28px;
+  margin: 10px 0;
+}
+
+.title-secondary {
+  font-size: 20px;
+}
+
+input,
+textarea {
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  width: 90%;
+  padding-left: 5px;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.input-label {
+  display: block;
+  font-size: 20px;
+  font-weight: 700;
+  padding: 5%;
+}
+
+.list {
+  list-style-type: none;
+}
+
+.list-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #f3dbf1;
+}
+
+span.left-side {
+  display: flex;
+  width: 70%;
+}
+
+span.text {
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  word-break: break-all;
+}
+
+.li-text-edit {
+  background-color: #2a7e43;
+  color: #fff;
+  padding: 0;
+  outline: none;
+  border: 2px inset grey;
+  display: none;
+}
+
+.btn {
+  width: 29px;
+  height: 29px;
+}
+
+.btn-add {
+  position: absolute;
+  top: 40px;
+  right: 10px;
+  background-color: #2a7e43;
+  color: #fff;
+}
+
+.btn-clear {
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  margin-bottom: 20px;
+  padding: 5px 10px;
+  background-color: #000;
+  color: #fff;
+}
+
+.btn-check {
+  background-color: #fff;
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+
+.btn-edit {
+  background-color: #03396c;
+  color: #fff;
+}
+
+.btn-remove {
+  background-color: red;
+  color: #fff;
+}
+
+.btn-warning-remove {
+  background-color: red;
+  color: #fff;
+}
+
+.fa-check {
+  color: #fff;
+}
+
+/* Classes manipulated by JS*/
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
+}
+
+.black-tick {
+  color: #000;
+}
+
+.strike-through {
+  text-decoration: line-through;
+}
+
+.btn-edit-margin {
+  margin-right: 5px;
 }
