@@ -17,30 +17,16 @@
         <!-- add todo -->
         <section>
           <label for="todo" class="input-label whitee">Add New</label>
-          <input type="text" name="todo" id="todo" placeholder="Type your activity...">
+          <input type="text" name="todo" id="todoInput" placeholder="Type your activity...">
+          <button id="addTodo">
+            Add
+          </button>
         </section>     
         <!-- Todos -->
         <section>
-          <h2 class="title-secondary title-active whitee">To dos</h2>
-          <ul class="list list-active">
-            <li class="list-item">
-              <span class="left-side">
-                <button class="btn btn-check btn-check-active">
-                  <i class="fas fa-check fa-check-active"></i>
-                </button>
-                <span class="text">Walk the dog</span>
-                <textarea cols="25" rows="3" class="li-text-edit"></textarea>
-              </span>
-              <span class="right-side">
-                <button class="btn btn-edit">
-                  <i class="fas fa-pen"></i>
-                </button>
-                <button class="btn btn-remove">
-                  <i class="fas fa-times"></i>
-                </button>
-              </span> 
-            </li>
-          </ul>
+          <div id="todo-container">
+
+          </div>
         </section>
      <!-- Pomodoro timer -->
       <section>
