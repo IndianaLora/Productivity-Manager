@@ -20,10 +20,11 @@ var interval;
 var time = 1;
 var todoArray =[];
 
+currentDate();
 
 function currentDate() {
     var today = new Date();
-    const currentDate = new Date(Date.UTC(today.getFullYear(), today.getDate(), today.getMonth(), today.getHours() + " ", 0, 0));
+    const currentDate = new Date(Date.UTC(today.getFullYear(), today.getDate()-1, today.getMonth()+1, today.getHours() +" ", 0, 0));
     const renderDate = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     dateTime.innerHTML = currentDate.toLocaleDateString(undefined, renderDate);
     
@@ -93,4 +94,3 @@ timezone.appendChild(localTime);
 setInterval(function () {       
     currentTime();
 },1000)
-currentDate();
