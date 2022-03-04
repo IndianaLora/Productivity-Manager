@@ -13,37 +13,39 @@ clock.className = 'center';
 const date = document.createElement("div");
 const dateTime = document.createElement("h1");
 const localTime = document.createElement("h3");
-const todo=document.createElement("h3");
+const todo = document.createElement("h3");
 
 
 var interval;
 var time = 1;
-var todoArray =[];
+var todoArray = [];
 
-currentDate();
 
 function currentDate() {
     var today = new Date();
-    const currentDate = new Date(Date.UTC(today.getFullYear(), today.getDate()-1, today.getMonth()+1, today.getHours() +" ", 0, 0));
+    const currentDate = new Date(Date.UTC(today.getFullYear(), today.getDate() - 1, today.getMonth() + 1, today.getHours() + " ", 0, 0));
     const renderDate = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     dateTime.innerHTML = currentDate.toLocaleDateString(undefined, renderDate);
-    
-    var time = today.getHours() + ":" + today.getMinutes() + ":" +today.getSeconds();
+
+    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
     localTime.innerHTML = time;
 }
-function currentTime(){
+function currentTime() {
     var today = new Date();
-    var time = today.getHours() + ":" + today.getMinutes() + ":" +today.getSeconds();
+    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
     localTime.innerHTML = time;
 }
-function todoList(){
-   todoArray.push(input.value)
-   todoArray.forEach(element =>{
-       var list = document.createElement("li");
-       list.innerHTML=element;
-       todoContainer.appendChild(list);
-   })
-   input.value = " ";
+function todoList() {
+    todoArray.push(input.value)
+    var lastElememnt = todoArray[todoArray.length - 1];
+    var list = document.createElement("li");
+    var checkBox = document.createElement("input");
+    checkBox.setAttribute("type","checkbox");
+    list.innerHTML = lastElememnt;
+    todoContainer.appendChild(list);
+    list.appendChild(checkBox);
+
+    input.value = " ";
 }
 
 function startTimer() {
@@ -83,7 +85,7 @@ start.addEventListener("click", startTimer);
 stop.addEventListener("click", stopTimer);
 reset.addEventListener("click", resetTimer);
 
-addButton.addEventListener("click",todoList);
+addButton.addEventListener("click", todoList);
 
 
 timer.appendChild(clock);
@@ -91,6 +93,7 @@ timezone.appendChild(dateTime);
 timezone.appendChild(localTime);
 
 
-setInterval(function () {       
+setInterval(function () {
     currentTime();
-},1000)
+}, 1000);
+currentDate();
