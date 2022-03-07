@@ -18,12 +18,15 @@ const todo = document.createElement("h3");
 
 var interval;
 var time = 1;
-var todoArray = [];
+var todoArray = [{
+    id:0,
+    name:""
+}];
 
 
 function currentDate() {
     var today = new Date();
-    const currentDate = new Date(Date.UTC(today.getFullYear(), today.getDate() - 1, today.getMonth() + 1, today.getHours() + " ", 0, 0));
+    const currentDate = new Date(Date.UTC(today.getFullYear(), today.getDate() - 5, today.getMonth() + 5, today.getHours() + " ", 0, 0));
     const renderDate = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     dateTime.innerHTML = currentDate.toLocaleDateString(undefined, renderDate);
 
@@ -36,18 +39,27 @@ function currentTime() {
     localTime.innerHTML = time;
 }
 function todoList() {
-    todoArray.push(input.value)
-    var lastElememnt = todoArray[todoArray.length - 1];
-    var list = document.createElement("li");
-    var checkBox = document.createElement("input");
-    checkBox.setAttribute("type","checkbox");
-    list.innerHTML = lastElememnt;
-    todoContainer.appendChild(list);
-    list.appendChild(checkBox);
+    //add the todo to an object
+    todoArray.push({"id":todoArray[todoArray.length - 1].id+1,"name":input.value})
+    var lastElememnt = todoArray[todoArray.length - 1].name;
+    createTodo(lastElememnt);
 
-    input.value = " ";
 }
-
+function createTodo(todoElement){
+  //create the list item
+  var list = document.createElement("li");
+  var checkBox = document.createElement("input");
+  checkBox.setAttribute("type","checkbox");
+  checkBox.addEventListener("checked",checkTodo(checkBox));
+  list.innerHTML = todoElement;
+  todoContainer.appendChild(list);
+  list.appendChild(checkBox);
+  //clear the input
+  input.value = " ";
+}
+function checkTodo(event){
+    console.log(event.parentNode);
+}
 function startTimer() {
     interval = setInterval(function () {
         var hours = Math.floor(time / 60);
