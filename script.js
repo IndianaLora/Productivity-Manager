@@ -50,15 +50,25 @@ function createTodo(todoElement){
   var list = document.createElement("li");
   var checkBox = document.createElement("input");
   checkBox.setAttribute("type","checkbox");
-  checkBox.addEventListener("checked",checkTodo(checkBox));
+  
   list.innerHTML = todoElement;
   todoContainer.appendChild(list);
-  list.appendChild(checkBox);
+  todoContainer.appendChild(checkBox);
+  var itemChecked=checkBox.previousSibling;
+  //reate check functionality
+  checkBox.addEventListener("click",function(){
+   if (checkBox.checked == true ){
+    itemChecked.style.textDecoration = "line-through";
+      } else {
+        itemChecked.style.textDecoration = "none";
+      }
+  })
   //clear the input
   input.value = " ";
 }
-function checkTodo(event){
-    console.log(event.parentNode);
+function deleteTodo(checkBoxItem){
+    var itemChecked=checkBoxItem.previousSibling;
+    
 }
 function startTimer() {
     interval = setInterval(function () {
