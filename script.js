@@ -17,7 +17,9 @@ const todo = document.createElement("h3");
 
 var interval;
 var time = 1;
+
 var todoArray = [];
+var deleteHtlmItem;
 
 function currentDate() {
     var today = new Date();
@@ -96,12 +98,10 @@ function registerCheckEvent(checkBox) {
     });
 }
 function registerDeleteEvent(itemToDelete, todo) {
-    //Get the element
-    console.log(todo.id);
     itemToDelete.addEventListener("click", function () {
         var index = todoArray.findIndex((item) => item.id === +todo.id);
         todoArray.splice(index, 1);
-        console.log(todoArray);
+        deleteHtlmItem = document.getElementById(String(todo.id)).remove();
     });
 }
 function startTimer() {
