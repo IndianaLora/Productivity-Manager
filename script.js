@@ -20,121 +20,121 @@ var time = 1;
 var todoArray = [];
 
 function currentDate() {
-  var today = new Date();
-  const currentDate = new Date(
-    Date.UTC(
-      today.getFullYear(),
-      today.getMonth(),
-      today.getDate(),
-      today.getHours() + " ",
-      0,
-      0
-    )
-  );
-  const renderDate = {
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  };
-  dateTime.innerHTML = currentDate.toLocaleDateString(undefined, renderDate);
+    var today = new Date();
+    const currentDate = new Date(
+        Date.UTC(
+            today.getFullYear(),
+            today.getMonth(),
+            today.getDate(),
+            today.getHours() + " ",
+            0,
+            0
+        )
+    );
+    const renderDate = {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+    };
+    dateTime.innerHTML = currentDate.toLocaleDateString(undefined, renderDate);
 
-  var time =
-    today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-  localTime.innerHTML = time;
+    var time =
+        today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    localTime.innerHTML = time;
 }
 function currentTime() {
-  var today = new Date();
-  var time =
-    today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-  localTime.innerHTML = time;
+    var today = new Date();
+    var time =
+        today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    localTime.innerHTML = time;
 }
 function addTodo() {
-  const name = input.value;
-  if (name.trim() === "") {
-    return;
-  }
-  
-  const newId =
-    todoArray.length === 0 ? 1 : todoArray[todoArray.length - 1].id + 1;
+    const name = input.value;
+    if (name.trim() === "") {
+        return;
+    }
+
+    const newId =
+        todoArray.length === 0 ? 1 : todoArray[todoArray.length - 1].id + 1;
     todoArray.push({
-    id: newId,
-    name,
-  });
-  renderTodo(newId, name);
+        id: newId,
+        name,
+    });
+    renderTodo(newId, name);
 }
 function renderTodo(id, name) {
-  var listItem = document.createElement("li");
-  listItem.innerHTML = name;
-  listItem.id = id;
+    var listItem = document.createElement("li");
+    listItem.innerHTML = name;
+    listItem.id = id;
 
-  var checkBox = document.createElement("input");
-  checkBox.setAttribute("type", "checkbox");
+    var checkBox = document.createElement("input");
+    checkBox.setAttribute("type", "checkbox");
 
-  var deleteItem = document.createElement("i");
-  deleteItem.innerHTML = '<i class="fa fa-trash" aria-hidden="true"></i>';
-  deleteItem.style.cursor = "pointer";
+    var deleteItem = document.createElement("i");
+    deleteItem.innerHTML = '<i class="fa fa-trash" aria-hidden="true"></i>';
+    deleteItem.style.cursor = "pointer";
 
-  todoContainer.appendChild(listItem);
-  listItem.appendChild(checkBox);
-  listItem.appendChild(deleteItem);
+    todoContainer.appendChild(listItem);
+    listItem.appendChild(checkBox);
+    listItem.appendChild(deleteItem);
 
-  registerCheckEvent(checkBox);
-  registerDeleteEvent(deleteItem, listItem);
+    registerCheckEvent(checkBox);
+    registerDeleteEvent(deleteItem, listItem);
 
-  input.value = "";
+    input.value = "";
 }
 function registerCheckEvent(checkBox) {
-  var itemChecked = checkBox.parentElement;
-  //If activity its been checked mark it as check
-  checkBox.addEventListener("click", function () {
-    if (checkBox.checked == true) {
-      itemChecked.style.textDecoration = "line-through";
-    } else {
-      itemChecked.style.textDecoration = "none";
-    }
-  });
+    var itemChecked = checkBox.parentElement;
+    //If activity its been checked mark it as check
+    checkBox.addEventListener("click", function () {
+        if (checkBox.checked == true) {
+            itemChecked.style.textDecoration = "line-through";
+        } else {
+            itemChecked.style.textDecoration = "none";
+        }
+    });
 }
 function registerDeleteEvent(itemToDelete, todo) {
-  //Get the element
-  console.log(todo.id);
-  itemToDelete.addEventListener("click", function () {
-    var index = todoArray.findIndex((item) => item.id === +todo.id);
-    todoArray.splice(index, 1);
-    console.log(todoArray);
-  });
+    //Get the element
+    console.log(todo.id);
+    itemToDelete.addEventListener("click", function () {
+        var index = todoArray.findIndex((item) => item.id === +todo.id);
+        todoArray.splice(index, 1);
+        console.log(todoArray);
+    });
 }
 function startTimer() {
-  interval = setInterval(function () {
-    var hours = Math.floor(time / 60);
-    var minutes = time % 60;
-    clock.innerHTML = hours + ":" + minutes;
-    time++;
-    pomodoroTime(time);
-  }, 1000);
-  start.className = "disabled";
+    interval = setInterval(function () {
+        var hours = Math.floor(time / 60);
+        var minutes = time % 60;
+        clock.innerHTML = hours + ":" + minutes;
+        time++;
+        pomodoroTime(time);
+    }, 1000);
+    start.className = "disabled";
 }
 
 function stopTimer() {
-  clearInterval(interval);
-  start.classList.remove("disabled");
-  start.className = "button";
+    clearInterval(interval);
+    start.classList.remove("disabled");
+    start.className = "button";
 }
 function resetTimer() {
-  clearInterval(interval);
-  time = 1;
-  clock.innerHTML = 0;
+    clearInterval(interval);
+    time = 1;
+    clock.innerHTML = 0;
 
-  start.classList.remove("disabled");
-  start.className = "button";
+    start.classList.remove("disabled");
+    start.className = "button";
 }
 function pomodoroTime(time) {
-  if (time === 1500) {
-    clearInterval(interval);
-    setInterval(function () {
-      //add audio here
-    }, 5000);
-  }
+    if (time === 1500) {
+        clearInterval(interval);
+        setInterval(function () {
+            //add audio here
+        }, 5000);
+    }
 }
 
 start.addEventListener("click", startTimer);
@@ -148,6 +148,6 @@ timezone.appendChild(dateTime);
 timezone.appendChild(localTime);
 
 setInterval(function () {
-  currentTime();
+    currentTime();
 }, 1000);
 currentDate();
