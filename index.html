@@ -4,42 +4,33 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
     <link rel="stylesheet" href="style.css" />
     <title>Productivy Manager</title>
   </head>
   <body>
     <div class="container" id="container">
- <section>
-   <div class="timezone" id="timezone">
-   </div>
- </section>
-        <h1 class="title-primary whitee">Productivy Manager</h1>                 
-        <!-- add todo -->
-        <section>
-          <label for="todo" class="input-label whitee">Add New</label>
-          <input type="text" name="todo" id="todoInput" placeholder="Type your activity...">
-          <button id="addTodo">
-            Add
-          </button>
-        </section>     
-        <!-- Todos -->
-        <section>
-          <div id="todo-container">
-         
-          </div>
-        </section>
-     <!-- Pomodoro timer -->
       <section>
-        <h1 class="tittle">Pomodoro Timer</h1>
-        <div class="timer" id="timer"></div>
+        <div class="timezone" id="timezone"></div>
       </section>
-      <section id="buttons">
-        <div class="button-container">
-          <div class="button startButton" id="start">Start</div>
-          <div class="button stopButton" id="stop">Stop</div>
-          <div class="button resetButton" id="reset">Reset</div>
-        </div>
+      <h1 class="title-primary whitee">Productivy Manager</h1>
+      <!-- add todo -->
+      <section>
+        <label for="todo" class="input-label whitee">Add New</label>
+        <input
+          type="text"
+          name="todo"
+          id="todoInput"
+          placeholder="Type your activity..."
+        />
+        <button id="addTodo">Add</button>
+      </section>
+      <!-- Todos -->
+      <section class="todo-container">
+        <div id="todo-container"></div>
       </section>
     </div>
     <script src="script.js"></script>
