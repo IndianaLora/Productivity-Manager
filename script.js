@@ -1,13 +1,22 @@
 const timezone = document.getElementById("timezone");
+const start = document.getElementById("start");
+const stop = document.getElementById("stop");
+const reset = document.getElementById("reset");
+const timer = document.getElementById("timer");
+
 const todoContainer = document.getElementById("todo-container");
 const input = document.getElementById("todoInput");
 const addButton = document.getElementById("addTodo");
 
+const clock = document.createElement("h1");
+clock.className = "center";
 const date = document.createElement("div");
 const dateTime = document.createElement("h1");
 const localTime = document.createElement("h3");
+const todo = document.createElement("h3");
 
 var interval;
+var time = 0;
 
 var todoArray = [];
 var deleteHtlmItem;
@@ -57,78 +66,30 @@ function addTodo() {
     renderTodo(newId, name);
 }
 function renderTodo(id, name) {
-    //todo
-    var todo = document.createElement("li");
-    todo.innerHTML = name;
-    todo.id = id;
-    //checkbox
+    var listItem = document.createElement("li");
+    listItem.innerHTML = name;
+    listItem.id = id;
+    listItem.className="todo-element";
+
     var checkBox = document.createElement("input");
     checkBox.setAttribute("type", "checkbox");
-    //trasg
+    checkBox.classList="check";
+
     var deleteItem = document.createElement("i");
     deleteItem.innerHTML = '<i class="fa fa-trash" aria-hidden="true"></i>';
     deleteItem.style.cursor = "pointer";
-    //buttons
-    var clock = document.createElement("h1");
-    var start = document.createElement("button");
-    var stop = document.createElement("button");
-    var reset = document.createElement("button");
-    start.innerHTML = "Start";
-    stop.innerHTML = "Stop";
-    reset.innerHTML = "Reset";
-    //timer
-    const timer = document.createElement("h4");
-    timer.innerHTML = "Pomodoro Timer";
-    timer.classList = "tittle";
 
-    //events
-    start.addEventListener("click", startTimer(clock));
-    stop.addEventListener("click", stopTimer);
-    reset.addEventListener("click", resetTimer);
+    todoContainer.appendChild(listItem);
+    listItem.appendChild(checkBox);
+    listItem.appendChild(deleteItem);
 
-    todo.append(checkBox, deleteItem, timer, clock, start, stop, reset);
-    todoContainer.appendChild(todo);
-
-    registerCheckEvent(todo,checkBox);
-    registerDeleteEvent(deleteItem, todo);
+    registerCheckEvent(checkBox);
+    registerDeleteEvent(deleteItem, listItem);
 
     input.value = "";
 }
-
-function startTimer(clock) {
-    interval = setInterval(function () {
-        var hours = Math.floor(time / 60);
-        var minutes = time % 60;
-        clock.innerHTML = hours + ":" + minutes;
-        time++;
-        pomodoroTime(time);
-    }, 1000);
-    //start.className = "disabled";
-}
-
-function stopTimer() {
-    clearInterval(interval);
-    //start.classList.remove("disabled");
-    // start.className = "button";
-}
-function resetTimer(clock) {
-    clearInterval(interval);
-    time = 1;
-    clock.innerHTML = 0;
-
-    // start.classList.remove("disabled");
-    // start.className = "button";
-}
-function pomodoroTime(time) {
-    if (time === 1500) {
-        clearInterval(interval);
-        setInterval(function () {
-            //add audio here
-        }, 5000);
-    }
-}
-function registerCheckEvent(todo,checkBox) {
-    var itemChecked = todo;
+function registerCheckEvent(checkBox) {
+    var itemChecked = checkBox.parentElement;
     //If activity its been checked mark it as check
     checkBox.addEventListener("click", function () {
         if (checkBox.checked == true) {
@@ -145,9 +106,46 @@ function registerDeleteEvent(itemToDelete, todo) {
         deleteHtlmItem = document.getElementById(String(todo.id)).remove();
     });
 }
+function startTimer() {
+    interval = setInterval(function () {
+        var hours = Math.floor(time / 60);
+        var minutes = time % 60;
+        clock.innerHTML = hours + ":" + minutes;
+        time++;
+        pomodoroTime(time);
+    }, 1000);
+    start.className = "disabled";
+}
+
+function stopTimer() {
+    clearInterval(interval);
+    start.classList.remove("disabled");
+    start.className = "buttons";
+}
+function resetTimer() {
+    clearInterval(interval);
+    time = 1;
+    clock.innerHTML = 0;
+
+    start.classList.remove("disabled");
+    start.className = "buttons";
+}
+function pomodoroTime(time) {
+    if (time === 1500) {
+        clearInterval(interval);
+        setInterval(function () {
+            //add audio here
+        }, 5000);
+    }
+}
+
+start.addEventListener("click", startTimer);
+stop.addEventListener("click", stopTimer);
+reset.addEventListener("click", resetTimer);
 
 addButton.addEventListener("click", addTodo);
-['click','keyup'].forEach(event=> addButton.addEventListener(event, addTodo(event),false));
+
+timer.appendChild(clock);
 timezone.appendChild(dateTime);
 timezone.appendChild(localTime);
 

@@ -19,18 +19,32 @@
       <h1 class="title-primary whitee">Productivy Manager</h1>
       <!-- add todo -->
       <section>
-        <label for="todo" class="input-label whitee">Add New</label>
+        <label for="todo" class="input-label whitee ">Add todo</label>
         <input
           type="text"
           name="todo"
           id="todoInput"
           placeholder="Type your activity..."
+          class="input"
         />
         <button id="addTodo">Add</button>
+        <!-- Pomodoro timer -->
+        <div class="timer" id="timer">
+          <h3 class="tittle">Pomodoro Timer</h3>
+          <span id="timer"></span>
+        </div>
+         <!-- Buttons -->
+        <div class="button-container">
+          <div class="button startButton buttons" id="start">Start</div>
+          <div class="button stopButton buttons" id="stop">Stop</div>
+          <div class="button resetButton buttons" id="reset">Reset</div>
+        </div>
+         
+      
       </section>
       <!-- Todos -->
-      <section class="todo-container">
-        <div id="todo-container"></div>
+      <section>
+        <div class="todo-container" id="todo-container"></div>
       </section>
     </div>
     <script src="script.js"></script>
