@@ -63,31 +63,40 @@ function addTodo() {
         id: newId,
         name,
     });
+    localStorage.setItem("todos",JSON.stringify(todoArray));
     renderTodo(newId, name);
 }
-function renderTodo(id, name) {
-    var listItem = document.createElement("li");
-    listItem.innerHTML = name;
-    listItem.id = id;
-    listItem.className="todo-element";
 
-    var checkBox = document.createElement("input");
-    checkBox.setAttribute("type", "checkbox");
-    checkBox.classList="check";
+function renderTodo() {
+    var todos=JSON.parse(localStorage.getItem("todos")) ;
+    todos.forEach(element => {
+        var listItem = document.createElement("li");
+        listItem.innerHTML = element.name;
+        listItem.id =element.id;
+        listItem.className="todo-element";
+    
+        var checkBox = document.createElement("input");
+        checkBox.setAttribute("type", "checkbox");
+        checkBox.classList="check";
+    
+        var deleteItem = document.createElement("i");
+        deleteItem.innerHTML = '<i class="fa fa-trash" aria-hidden="true"></i>';
+        deleteItem.style.cursor = "pointer";
+    
+        todoContainer.appendChild(listItem);
+        listItem.appendChild(checkBox);
+        listItem.appendChild(deleteItem);
+    
+        registerCheckEvent(checkBox);
+        registerDeleteEvent(deleteItem, listItem);
+    
+        input.value = "";
+    });
+ 
 
-    var deleteItem = document.createElement("i");
-    deleteItem.innerHTML = '<i class="fa fa-trash" aria-hidden="true"></i>';
-    deleteItem.style.cursor = "pointer";
 
-    todoContainer.appendChild(listItem);
-    listItem.appendChild(checkBox);
-    listItem.appendChild(deleteItem);
-
-    registerCheckEvent(checkBox);
-    registerDeleteEvent(deleteItem, listItem);
-
-    input.value = "";
 }
+
 function registerCheckEvent(checkBox) {
     var itemChecked = checkBox.parentElement;
     //If activity its been checked mark it as check

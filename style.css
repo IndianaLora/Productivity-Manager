@@ -132,7 +132,6 @@ li {
 }
 li:hover {
   transition: ease-in 0.5s;
-  to right top, #64c2c7, #00b4e6, #3c9bfc, #a86fe8, #eb12a0
   box-shadow: inset 300px 0 0 0 rgb(85, 209, 182);
   cursor: pointer;
   color: rgb(11, 11, 15);
