@@ -123,12 +123,26 @@ textarea {
   display: flex;
   flex-direction: row;
   margin-bottom: 1%;
-  height: 30px;
+  min-height: 30px;
   font-style: italic;
   font-weight: bold;
 }
 li {
+  display: flex;
   padding: 3%;
+}
+
+li > p {
+  flex: 0 0 70%;
+  word-break: break-all;
+}
+
+li > input {
+  flex: 0 0 15%;
+}
+
+li > i {
+  flex: 0 0 15%;
 }
 li:hover {
   transition: ease-in 0.5s;
@@ -151,8 +165,4 @@ li:hover {
 .todo-element:nth-child(4n + 1) {
   color: #fff;
   background: #f775ec;
-}
-.check {
-  margin-left: 60%;
-  
 }

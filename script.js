@@ -18,8 +18,15 @@ const todo = document.createElement("h3");
 var interval;
 var time = 0;
 
-var todoArray = [];
 var deleteHtlmItem;
+
+var todoArray = JSON.parse(localStorage.getItem("todos"));
+if (todoArray === null) {
+  todoArray = []
+}
+todoArray.forEach(element => {
+  renderTodo(element.id, element.name)
+});
 
 function currentDate() {
   var today = new Date();
@@ -51,54 +58,54 @@ function currentTime() {
     today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
   localTime.innerHTML = time;
 }
+input.addEventListener("keyup", function (event) {
+  if (event.code === 'Enter') {
+    addTodo();
+  }
+})
 function addTodo() {
   const name = input.value;
   if (name.trim() === "") {
     return;
   }
 
-  var todos = JSON.parse(localStorage.getItem("todos"));
   const newId =
     todoArray.length === 0 ? 1 : todoArray[todoArray.length - 1].id + 1;
-  todos !== null
-    ? console.log("hey")
-    : todoArray.push({
-        id: newId,
-        name,
-      });
-      
-  input.value = "";
+  todoArray.push({
+    id: newId,
+    name,
+  });
   localStorage.setItem("todos", JSON.stringify(todoArray));
-  console.log(todos);
-  renderTodo();
+  renderTodo(newId, name);
 }
 
-function renderTodo() {
-  var todos = JSON.parse(localStorage.getItem("todos"));
-  if (todos !== null) {
-    var element = todos[todos.length - 1];
-    var listItem = document.createElement("li");
-    listItem.innerHTML = element.name;
-    listItem.id = element.id;
-    listItem.className = "todo-element";
+function renderTodo(id, name) {
 
-    var checkBox = document.createElement("input");
-    checkBox.setAttribute("type", "checkbox");
-    checkBox.classList = "check";
+  var pTodo = document.createElement("p");
+  pTodo.innerText = name
 
-    var deleteItem = document.createElement("i");
-    deleteItem.innerHTML = '<i class="fa fa-trash" aria-hidden="true"></i>';
-    deleteItem.style.cursor = "pointer";
+  var listItem = document.createElement("li");
+  listItem.id = id;
+  listItem.className = "todo-element";
 
-    todoContainer.appendChild(listItem);
-    listItem.appendChild(checkBox);
-    listItem.appendChild(deleteItem);
+  var checkBox = document.createElement("input");
+  checkBox.setAttribute("type", "checkbox");
+  checkBox.classList = "check";
 
-    registerCheckEvent(checkBox);
-    registerDeleteEvent(deleteItem, listItem);
-  }
+  var deleteItem = document.createElement("i");
+  deleteItem.innerHTML = '<i class="fa fa-trash" aria-hidden="true"></i>';
+  deleteItem.style.cursor = "pointer";
+
+  todoContainer.appendChild(listItem);
+  listItem.appendChild(pTodo);
+  listItem.appendChild(checkBox);
+  listItem.appendChild(deleteItem);
+
+  registerCheckEvent(checkBox);
+  registerDeleteEvent(deleteItem, listItem);
+
+  input.value = "";
 }
-
 function registerCheckEvent(checkBox) {
   var itemChecked = checkBox.parentElement;
   //If activity its been checked mark it as check
