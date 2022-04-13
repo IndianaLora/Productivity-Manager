@@ -22,10 +22,20 @@ var deleteHtlmItem;
 
 var todoArray = JSON.parse(localStorage.getItem("todos"));
 if (todoArray === null) {
-  todoArray = []
+  todoArray = [];
 }
-todoArray.forEach(element => {
-  renderTodo(element.id, element.name)
+todoArray.forEach((element) => {
+  renderTodo(element.id, element.name);
+});
+todoArray.forEach((element) => {
+  if (element.checked === true) {
+    var elementchecked = document.getElementById(String(element.id));
+    //keep this checkbox check
+    console.log(elementchecked.parentElement.firstChild.firstChild.nextSibling);
+    elementchecked.style.textDecoration = "line-through";
+  } else if (element.checked === false) {
+    elementchecked.style.textDecoration = "none";
+  }
 });
 
 function currentDate() {
@@ -59,10 +69,10 @@ function currentTime() {
   localTime.innerHTML = time;
 }
 input.addEventListener("keyup", function (event) {
-  if (event.code === 'Enter') {
+  if (event.code === "Enter") {
     addTodo();
   }
-})
+});
 function addTodo() {
   const name = input.value;
   if (name.trim() === "") {
@@ -74,15 +84,15 @@ function addTodo() {
   todoArray.push({
     id: newId,
     name,
+    checked: ''
   });
   localStorage.setItem("todos", JSON.stringify(todoArray));
   renderTodo(newId, name);
 }
 
 function renderTodo(id, name) {
-
   var pTodo = document.createElement("p");
-  pTodo.innerText = name
+  pTodo.innerText = name;
 
   var listItem = document.createElement("li");
   listItem.id = id;
@@ -101,31 +111,38 @@ function renderTodo(id, name) {
   listItem.appendChild(checkBox);
   listItem.appendChild(deleteItem);
 
-  registerCheckEvent(checkBox);
+  registerCheckEvent(checkBox, listItem);
   registerDeleteEvent(deleteItem, listItem);
 
   input.value = "";
 }
-function registerCheckEvent(checkBox) {
+function registerCheckEvent(checkBox, todo) {
   var itemChecked = checkBox.parentElement;
-  //If activity its been checked mark it as check
+
   checkBox.addEventListener("click", function () {
     if (checkBox.checked == true) {
       itemChecked.style.textDecoration = "line-through";
-    } else {
+      var index = todoArray.findIndex((item) => item.id === +todo.id);
+      todoArray[index].checked = true;
+      console.log(todoArray);
+      localStorage.setItem("todos", JSON.stringify(todoArray));
+    }
+    else {
       itemChecked.style.textDecoration = "none";
+      var index = todoArray.findIndex((item) => item.id === +todo.id);
+      todoArray[index].checked = false;
+      console.log(todoArray);
+      localStorage.setItem("todos", JSON.stringify(todoArray));
     }
   });
 }
 function registerDeleteEvent(itemToDelete, todo) {
   itemToDelete.addEventListener("click", function () {
-
     var index = todoArray.findIndex((item) => item.id === +todo.id);
     todoArray.splice(index, 1);
     deleteHtlmItem = document.getElementById(String(todo.id)).remove();
 
     localStorage.setItem("todos", JSON.stringify(todoArray));
-
   });
 }
 function startTimer() {
