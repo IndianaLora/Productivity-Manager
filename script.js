@@ -119,9 +119,13 @@ function registerCheckEvent(checkBox) {
 }
 function registerDeleteEvent(itemToDelete, todo) {
   itemToDelete.addEventListener("click", function () {
+
     var index = todoArray.findIndex((item) => item.id === +todo.id);
     todoArray.splice(index, 1);
     deleteHtlmItem = document.getElementById(String(todo.id)).remove();
+
+    localStorage.setItem("todos", JSON.stringify(todoArray));
+
   });
 }
 function startTimer() {
