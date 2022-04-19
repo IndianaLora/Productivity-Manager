@@ -28,12 +28,14 @@ todoArray.forEach((element) => {
   renderTodo(element.id, element.name);
 });
 todoArray.forEach((element) => {
+
   if (element.checked === true) {
     var elementchecked = document.getElementById(String(element.id));
-    //keep this checkbox check
-    console.log(elementchecked.parentElement.firstChild.firstChild.nextSibling);
+    console.log(elementchecked);
+    var checkbox = elementchecked.querySelector("input");
+    checkbox.checked = true;
     elementchecked.style.textDecoration = "line-through";
-  } else if (element.checked === false) {
+  } else {
     elementchecked.style.textDecoration = "none";
   }
 });
@@ -120,7 +122,7 @@ function registerCheckEvent(checkBox, todo) {
   var itemChecked = checkBox.parentElement;
 
   checkBox.addEventListener("click", function () {
-    if (checkBox.checked == true) {
+    if (checkBox.checked === true) {
       itemChecked.style.textDecoration = "line-through";
       var index = todoArray.findIndex((item) => item.id === +todo.id);
       todoArray[index].checked = true;
@@ -131,7 +133,6 @@ function registerCheckEvent(checkBox, todo) {
       itemChecked.style.textDecoration = "none";
       var index = todoArray.findIndex((item) => item.id === +todo.id);
       todoArray[index].checked = false;
-      console.log(todoArray);
       localStorage.setItem("todos", JSON.stringify(todoArray));
     }
   });
